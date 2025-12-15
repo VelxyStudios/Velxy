@@ -1,0 +1,191 @@
+from flask import Flask, render_template_string
+
+app = Flask(__name__)
+
+# Data for IRL showcase
+games = [
+    {"name": "Haunted Maze", "img": "https://picsum.photos/300/200?random=1", "desc": "Face your fears in our ultimate haunted maze experience."},
+    {"name": "Zombie Escape", "img": "https://picsum.photos/300/200?random=2", "desc": "Run for your life as zombies chase you through the venue."},
+    {"name": "Ghost Hunt", "img": "https://picsum.photos/300/200?random=3", "desc": "Hunt for ghosts in our dark immersive rooms."}
+]
+
+merch = [
+    {"name": "Haunted T-Shirt", "img": "https://picsum.photos/300/200?random=4"},
+    {"name": "Zombie Hoodie", "img": "https://picsum.photos/300/200?random=5"},
+    {"name": "Ghost Mug", "img": "https://picsum.photos/300/200?random=6"}
+]
+
+pcs = [
+    {"name": "Arza Phantom PC", "img": "https://picsum.photos/300/200?random=7"},
+    {"name": "Arza Specter Laptop", "img": "https://picsum.photos/300/200?random=8"}
+]
+
+food = [
+    {"name": "Zombie Brain Cupcake", "img": "https://picsum.photos/300/200?random=9"},
+    {"name": "Ghostly Cotton Candy", "img": "https://picsum.photos/300/200?random=10"}
+]
+
+dead_lantern = [
+    {"name": "Dead Lantern Alpha", "img": "https://picsum.photos/300/200?random=11", "desc": "Test our newest Dead Lantern game before anyone else."},
+    {"name": "Dead Lantern Beta", "img": "https://picsum.photos/300/200?random=12", "desc": "Exclusive pre-release preview available IRL."}
+]
+
+locations = [
+    "New York City, NY – Times Square Event Center",
+    "Los Angeles, CA – Horror Hub Downtown",
+    "Chicago, IL – Ghost Alley Arcade",
+    "Miami, FL – Nightfall Venue"
+]
+
+template = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Velxy - Face the Fear IRL</title>
+<style>
+body { margin:0; font-family: Arial, sans-serif; background: #0a0a0a; color: #fff; }
+header { background: #111; padding: 2rem; text-align: center; }
+header h1 { font-size: 3rem; color: #ff0000; text-shadow: 0 0 10px #ff0000; }
+nav a { color:#fff; margin:0 1rem; text-decoration:none; font-weight:bold; cursor:pointer; }
+nav a:hover { color: #ff0000; }
+.hero { background: url('https://images.unsplash.com/photo-1590781147500-56b038c45d4f?auto=format&fit=crop&w=1350&q=80') no-repeat center/cover; height:80vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; position:relative; }
+.hero::after { content:""; position:absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.7); }
+.hero h2 { font-size:3rem; z-index:1; }
+.hero p { z-index:1; font-size:1.2rem; }
+section { padding:4rem 2rem; max-width:1200px; margin:auto; }
+section h2 { font-size:2.5rem; text-align:center; margin-bottom:2rem; color:#ff0000; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:2rem; }
+.card { background:#1a1a1a; border:2px solid #ff0000; padding:1rem; text-align:center; transition:transform 0.3s; }
+.card:hover { transform: scale(1.05); }
+.card img { width:100%; height:200px; object-fit:cover; margin-bottom:1rem; }
+
+/* Locations Modal */
+#modal { display:none; position:fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.85); justify-content:center; align-items:center; }
+#modal-content { background:#1a1a1a; padding:2rem; border:2px solid #ff0000; text-align:center; max-width:500px; }
+#modal-content h3 { margin-bottom:1rem; }
+#close { margin-top:1rem; padding:0.5rem 1rem; background:#ff0000; border:none; cursor:pointer; }
+.note { color:#ff5555; font-weight:bold; margin-top:0.5rem; }
+</style>
+</head>
+<body>
+<header>
+<h1>Velxy</h1>
+<nav>
+<a onclick="scrollToSection('games')">Games</a>
+<a onclick="scrollToSection('merch')">Merch</a>
+<a onclick="scrollToSection('pcs')">PCs</a>
+<a onclick="scrollToSection('food')">Food</a>
+<a onclick="scrollToSection('deadlantern')">Dead Lantern</a>
+<a onclick="showLocations()">Locations</a>
+</nav>
+</header>
+
+<div class="hero">
+<h2>Face Your Fears IRL</h2>
+<p>Immersive horror experiences & exclusive IRL-only merch</p>
+</div>
+
+<section id="games">
+<h2>Our Games</h2>
+<div class="grid">
+{% for game in games %}
+<div class="card">
+<img src="{{ game.img }}" alt="">
+<h3>{{ game.name }}</h3>
+<p>{{ game.desc }}</p>
+<p class="note">Experience this in person only!</p>
+</div>
+{% endfor %}
+</div>
+</section>
+
+<section id="merch">
+<h2>Merch (IRL Only)</h2>
+<div class="grid">
+{% for item in merch %}
+<div class="card">
+<img src="{{ item.img }}" alt="">
+<h3>{{ item.name }}</h3>
+<p class="note">Available at our events only!</p>
+</div>
+{% endfor %}
+</div>
+</section>
+
+<section id="pcs">
+<h2>PCs from Arza (IRL Display)</h2>
+<div class="grid">
+{% for pc in pcs %}
+<div class="card">
+<img src="{{ pc.img }}" alt="">
+<h3>{{ pc.name }}</h3>
+<p class="note">Check it out at our events!</p>
+</div>
+{% endfor %}
+</div>
+</section>
+
+<section id="food">
+<h2>Themed Food (IRL Only)</h2>
+<div class="grid">
+{% for f in food %}
+<div class="card">
+<img src="{{ f.img }}" alt="">
+<h3>{{ f.name }}</h3>
+<p class="note">Taste it in person!</p>
+</div>
+{% endfor %}
+</div>
+</section>
+
+<section id="deadlantern">
+<h2>Dead Lantern Previews</h2>
+<div class="grid">
+{% for dl in dead_lantern %}
+<div class="card">
+<img src="{{ dl.img }}" alt="">
+<h3>{{ dl.name }}</h3>
+<p>{{ dl.desc }}</p>
+<p class="note">Test IRL before release!</p>
+</div>
+{% endfor %}
+</div>
+</section>
+
+<!-- Locations Modal -->
+<div id="modal">
+<div id="modal-content">
+<h3>Our Event Locations</h3>
+<ul>
+{% for loc in locations %}
+<li>{{ loc }}</li>
+{% endfor %}
+</ul>
+<button id="close" onclick="closeModal()">Close</button>
+</div>
+</div>
+
+<script>
+function scrollToSection(id) {
+    document.getElementById(id).scrollIntoView({behavior:'smooth'});
+}
+function showLocations() {
+    document.getElementById('modal').style.display='flex';
+}
+function closeModal() {
+    document.getElementById('modal').style.display='none';
+}
+</script>
+
+</body>
+</html>
+"""
+
+@app.route("/")
+def home():
+    return render_template_string(template, games=games, merch=merch, pcs=pcs, food=food, dead_lantern=dead_lantern, locations=locations)
+
+if __name__ == "__main__":
+    app.run(debug=True)
