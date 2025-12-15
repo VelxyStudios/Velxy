@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Velxy - Official IRL Horror Games</title>
+<title>Velxy - Official IRL Games</title>
 <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <style>
 body { margin:0; font-family:'Roboto', sans-serif; background:#0a0a0a; color:#fff; }
 header { background:#111; padding:1rem 2rem; display:flex; justify-content:space-between; align-items:center; }
 header h1 { font-family:'Creepster', cursive; color:#ff0000; font-size:2.5rem; text-shadow:0 0 10px #ff0000; margin:0; }
-nav a { color:#fff; margin-left:1rem; text-decoration:none; font-weight:bold; transition:0.2s; }
+nav a { color:#fff; margin-left:1rem; text-decoration:none; font-weight:bold; transition:0.2s; cursor:pointer; }
 nav a:hover { color:#ff5555; }
-.hero { background:url('https://images.unsplash.com/photo-1590781147500-56b038c45d4f?auto=format&fit=crop&w=1350&q=80') no-repeat center/cover; height:70vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; position:relative; }
-.hero::after { content:""; position:absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.7); }
+.hero { background:url('https://images.unsplash.com/photo-1604933762123-cf8e0fa374e2?auto=format&fit=crop&w=1350&q=80') no-repeat center/cover; height:70vh; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; position:relative; }
+.hero::after { content:""; position:absolute; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.6); }
 .hero h2 { font-family:'Creepster', cursive; font-size:3rem; color:#ff0000; z-index:1; }
 .hero p { font-size:1.2rem; z-index:1; }
 section { padding:3rem 2rem; max-width:1200px; margin:auto; }
@@ -36,59 +36,56 @@ button.locations:hover { background:#cc0000; }
 <header>
 <h1>Velxy</h1>
 <nav>
-<a href="#games">Games</a>
-<a href="#merch">Merch</a>
-<a href="#pcs">PCs</a>
-<a href="#food">Food</a>
-<a href="#deadlantern">Dead Lantern</a>
+<a onclick="scrollToSection('current')">This Month</a>
+<a onclick="scrollToSection('past')">Past Games</a>
+<a onclick="scrollToSection('merch')">Merch</a>
+<a onclick="scrollToSection('food')">Food</a>
+<a onclick="scrollToSection('pcs')">PCs</a>
 <a onclick="showLocations()">Locations</a>
 </nav>
 </header>
 
 <div class="hero">
-<h2>Official IRL Horror Experiences</h2>
-<p>All types of games, official merch, PCs, and themed food — only IRL</p>
+<h2>Velxy IRL Experiences</h2>
+<p>Official games, themed merch, food, and PCs — IRL only</p>
 </div>
 
-<section id="games">
-<h2>Our Games</h2>
+<section id="current">
+<h2>This Month’s Game: Resident Evil</h2>
 <div class="grid">
-<div class="card"><img src="https://picsum.photos/300/200?random=1" alt=""><h3>Haunted Maze</h3><p>Face your fears in our ultimate haunted maze experience.</p><p class="note">IRL only</p></div>
-<div class="card"><img src="https://picsum.photos/300/200?random=2" alt=""><h3>Zombie Escape</h3><p>Run for your life as zombies chase you through the venue.</p><p class="note">IRL only</p></div>
-<div class="card"><img src="https://picsum.photos/300/200?random=3" alt=""><h3>Ghost Hunt</h3><p>Hunt for ghosts in our immersive rooms.</p><p class="note">IRL only</p></div>
+<div class="card"><img src="https://picsum.photos/300/200?random=1" alt=""><h3>Resident Evil Challenge</h3><p>Survive the zombies in our immersive IRL Resident Evil game.</p><p class="note">IRL only</p></div>
 </div>
 </section>
 
 <section id="merch">
 <h2>Official Merch</h2>
 <div class="grid">
-<div class="card"><img src="https://picsum.photos/300/200?random=4" alt=""><h3>Haunted T-Shirt</h3><p class="note">Available IRL only</p></div>
-<div class="card"><img src="https://picsum.photos/300/200?random=5" alt=""><h3>Zombie Hoodie</h3><p class="note">Available IRL only</p></div>
-<div class="card"><img src="https://picsum.photos/300/200?random=6" alt=""><h3>Ghost Mug</h3><p class="note">Available IRL only</p></div>
-</div>
-</section>
-
-<section id="pcs">
-<h2>PCs from Arza</h2>
-<div class="grid">
-<div class="card"><img src="https://picsum.photos/300/200?random=7" alt=""><h3>Arza Phantom PC</h3><p class="note">Check it out at events</p></div>
-<div class="card"><img src="https://picsum.photos/300/200?random=8" alt=""><h3>Arza Specter Laptop</h3><p class="note">Check it out at events</p></div>
+<div class="card"><img src="https://picsum.photos/300/200?random=2" alt=""><h3>Resident Evil T-Shirt</h3><p class="note">Available at events only</p></div>
+<div class="card"><img src="https://picsum.photos/300/200?random=3" alt=""><h3>Umbrella Corp Hoodie</h3><p class="note">Available at events only</p></div>
 </div>
 </section>
 
 <section id="food">
 <h2>Themed Food</h2>
 <div class="grid">
-<div class="card"><img src="https://picsum.photos/300/200?random=9" alt=""><h3>Zombie Brain Cupcake</h3><p class="note">IRL only</p></div>
-<div class="card"><img src="https://picsum.photos/300/200?random=10" alt=""><h3>Ghostly Cotton Candy</h3><p class="note">IRL only</p></div>
+<div class="card"><img src="https://picsum.photos/300/200?random=4" alt=""><h3>Zombie Brain Cupcake</h3><p class="note">IRL only</p></div>
+<div class="card"><img src="https://picsum.photos/300/200?random=5" alt=""><h3>Biohazard Drink</h3><p class="note">IRL only</p></div>
 </div>
 </section>
 
-<section id="deadlantern">
-<h2>Dead Lantern Previews</h2>
+<section id="pcs">
+<h2>PCs for Event Play</h2>
 <div class="grid">
-<div class="card"><img src="https://picsum.photos/300/200?random=11" alt=""><h3>Dead Lantern Alpha</h3><p>Test new games before release IRL</p><p class="note">IRL only</p></div>
-<div class="card"><img src="https://picsum.photos/300/200?random=12" alt=""><h3>Dead Lantern Beta</h3><p>Exclusive pre-release preview IRL</p><p class="note">IRL only</p></div>
+<div class="card"><img src="https://picsum.photos/300/200?random=6" alt=""><h3>Arza Phantom PC</h3><p class="note">Experience the game IRL</p></div>
+</div>
+</section>
+
+<section id="past">
+<h2>Past Games</h2>
+<div class="grid">
+<div class="card"><img src="https://picsum.photos/300/200?random=7" alt=""><h3>Ghost Hunt</h3></div>
+<div class="card"><img src="https://picsum.photos/300/200?random=8" alt=""><h3>Haunted Maze</h3></div>
+<div class="card"><img src="https://picsum.photos/300/200?random=9" alt=""><h3>Zombie Escape</h3></div>
 </div>
 </section>
 
@@ -117,6 +114,5 @@ function closeModal() {
     document.getElementById('modal').style.display='none';
 }
 </script>
-
 </body>
 </html>
