@@ -30,6 +30,7 @@ section h2 { font-family:'Creepster', cursive; font-size:2rem; text-align:center
 #close { margin-top:1rem; padding:0.5rem 1rem; background:#ff0000; border:none; cursor:pointer; font-weight:bold; }
 button.locations { background:#ff0000; border:none; padding:0.8rem 1.5rem; color:#fff; font-weight:bold; cursor:pointer; transition:0.3s; margin-top:1rem; }
 button.locations:hover { background:#cc0000; }
+ul { text-align:left; padding-left:1.2rem; }
 </style>
 </head>
 <body>
@@ -41,6 +42,7 @@ button.locations:hover { background:#cc0000; }
 <a onclick="scrollToSection('merch')">Merch</a>
 <a onclick="scrollToSection('food')">Food</a>
 <a onclick="scrollToSection('pcs')">PCs</a>
+<a onclick="scrollToSection('tickets')">Tickets</a>
 <a onclick="showLocations()">Locations</a>
 </nav>
 </header>
@@ -86,6 +88,38 @@ button.locations:hover { background:#cc0000; }
 <div class="card"><img src="https://picsum.photos/300/200?random=7" alt=""><h3>Ghost Hunt</h3></div>
 <div class="card"><img src="https://picsum.photos/300/200?random=8" alt=""><h3>Haunted Maze</h3></div>
 <div class="card"><img src="https://picsum.photos/300/200?random=9" alt=""><h3>Zombie Escape</h3></div>
+</div>
+</section>
+
+<section id="tickets">
+<h2>Tickets & Pricing</h2>
+<div class="grid">
+  <div class="card">
+    <h3>General Admission</h3>
+    <p>Price: $20 per person</p>
+    <p>Includes access to this month’s game experience, themed food & PCs at the venue (food sold separately)</p>
+    <p class="note">IRL only</p>
+  </div>
+  <div class="card">
+    <h3>Early Bird Ticket</h3>
+    <p>Price: $25 per person</p>
+    <p>Same access as General Admission, <strong>plus a bonus game key</strong> for early attendees!</p>
+    <p class="note">Limited quantity — get them fast!</p>
+  </div>
+  <div class="card">
+    <h3>VIP Ticket</h3>
+    <p>Price: $40 per person</p>
+    <p>Includes everything in General Admission +:</p>
+    <ul>
+      <li>Guaranteed game key</li>
+      <li>Extra attempt at the objective game</li>
+      <li>Exclusive themed merch item</li>
+      <li>Priority access to game experiences, food, and PCs</li>
+      <li>Photo / meet & greet opportunities</li>
+      <li>Bonus swag bag (stickers, posters, collectibles)</li>
+    </ul>
+    <p class="note">Limited VIP spots — premium experience!</p>
+  </div>
 </div>
 </section>
 
